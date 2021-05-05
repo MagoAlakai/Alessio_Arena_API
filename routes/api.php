@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\EventosController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
@@ -54,32 +55,21 @@ Route::get('/user/{email}', [UserController::class, 'getUser']);
 
 
 
-//GET
+//CRUD de eventos
 
-// Route::get('/register', [RegisteredUserController::class, 'create'])
-//                 ->middleware('guest')
-//                 ->name('register');
+Route::get('/eventos', [EventosController::class, 'index'])
+            ->middleware('jwt.verify');
 
-// Route::get('/login', [AuthenticatedSessionController::class, 'create'])
-//                 ->middleware('guest')
-//                 ->name('login');
+Route::get('/eventos/{id}', [EventosController::class, 'show'])
+            ->middleware('jwt.verify');
 
-// Route::get('/forgot-password', [PasswordResetLinkController::class, 'create'])
-//                 ->middleware('guest')
-//                 ->name('password.request');
+Route::post('/eventos/create', [EventosController::class, 'store'])
+            ->middleware('jwt.verify');
 
-// Route::get('/reset-password/{token}', [NewPasswordController::class, 'create'])
-//                 ->middleware('guest')
-//                 ->name('password.reset');
+Route::put('/eventos/update/{id}', [EventosController::class, 'update'])
+            ->middleware('jwt.verify');
 
-// Route::get('/verify-email', [EmailVerificationPromptController::class, '__invoke'])
-//                 ->middleware('auth')
-//                 ->name('verification.notice');
+Route::delete('/eventos/delete/{id}', [EventosController::class, 'delete'])
+            ->middleware('jwt.verify');
 
-// Route::get('/verify-email/{id}/{hash}', [VerifyEmailController::class, '__invoke'])
-//                 ->middleware(['auth', 'signed', 'throttle:6,1'])
-//                 ->name('verification.verify');
 
-// Route::get('/confirm-password', [ConfirmablePasswordController::class, 'show'])
-//                 ->middleware('auth')
-//                 ->name('password.confirm');
