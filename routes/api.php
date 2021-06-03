@@ -28,9 +28,12 @@ use App\Http\Controllers\Auth\VerifyEmailController;
 
 //Routes de JWT integradas en Routes de BREEZE para autenticación
 
-Route::post('/register', [RegisteredUserController::class, 'store']);
+//Route::group(['middleware' => ['cors']], function () {
 
-Route::post('/login', [AuthenticatedSessionController::class, 'store']);
+    Route::post('/register', [RegisteredUserController::class, 'store'])->middleware("api");
+
+    Route::post('/login', [AuthenticatedSessionController::class, 'store'])->middleware("api");
+//});
 
 Route::post('/refresh-token', [AuthenticatedSessionController::class, 'refreshToken']);
 
@@ -52,7 +55,6 @@ Route::post('/confirm-password', [ConfirmablePasswordController::class, 'store']
             ->middleware('auth');
 
 Route::get('/user/{email}', [UserController::class, 'getUser']);
-
 
 
 //CRUD de eventos
