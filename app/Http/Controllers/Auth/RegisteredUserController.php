@@ -16,6 +16,7 @@ use Tymon\JWTAuth\Exceptions\JWTException;
 
 class RegisteredUserController extends Controller
 {
+
     /**
      * Display the registration view.
      *
@@ -36,7 +37,12 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+
+        // forcing a response for now - change this later to actually register a user
+        return response()->json( [
+            'data' => 'look at the response headers!'
+        ], 201 );
+
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',

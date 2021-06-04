@@ -51,7 +51,7 @@ services:
         networks:
             - nginx-proxy
 
-            
+
 networks:
   nginx-proxy:
     name: nginx-proxy

@@ -23,7 +23,7 @@ RUN docker-php-ext-install xml
 RUN docker-php-ext-install xmlwriter
 
 RUN rm -rf /tmp/*
-RUN mkdir -p /usr/share/nginx/html && chown -Rf www-data:www-data /usr/share/nginx/html
+RUN mkdir -p /usr/share/nginx/html && chown -Rf www-data:www-data /usr/share/nginx/html && chmod -Rf 775 /usr/share/nginx/html
 
 CMD [ "php-fpm", "-F" ]
 
