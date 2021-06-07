@@ -20,6 +20,7 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
+        \Fruitcake\Cors\HandleCors::class,
     ];
 
     /**
@@ -65,8 +66,8 @@ class Kernel extends HttpKernel
         //JWT
         'jwt.verify' => \App\Http\Middleware\JwtMiddleware::class,
 
-        // Custom Cors Middleware
-        'cors' => \App\Http\Middleware\Cors::class,
+        // Obsolete Cors Middleware
+        // 'cors' => \App\Http\Middleware\ObsoleteCors::class,
 
     ];
 }
