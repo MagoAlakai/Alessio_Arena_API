@@ -53,28 +53,27 @@ class RegisteredUserController extends Controller
         //     'password_confirmation' => 'required|string|required_with:password|same:password|min:8',
         // ]);
 
-        $servername = "alessio-arena-db";
-        $username = "root";
-        $password = "xz32NNgr45!";
-        
-        try {
-          $conn = new PDO("mysql:host=$servername;dbname=jwt", $username, $password);
-          // set the PDO error mode to exception
-          $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-          return response()->json( "Connected successfully", 200 );
-        } catch(PDOException $e) {
-            return response()->json( $e->getMessage(), 200 );
-        }
+        // $servername = "alessio-arena-db";
+        // $username = "root";
+        // $password = "xz32NNgr45!"
+        // try {
+        //   $conn = new \PDO("mysql:host=$servername;dbname=jwt", $username, $password);
+        //   // set the PDO error mode to exception
+        //   $conn->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+        //   return response()->json( "Connected successfully", 200 );
+        // } catch(PDOException $e) {
+        //     return response()->json( $e->getMessage(), 200 );
+        // }
 
-    //     try  {
-    //     $user = User::create([
-    //         'name' => $request->name,
-    //         'email' => $request->email,
-    //         'password' => Hash::make($request->password),
-    //     ]);
-    // } catch( Exception $ex ) {
-    //     return response()->json( $ex, 200 );
-    // }
+        try  {
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+            ]);
+        } catch( Exception $ex ) {
+            return response()->json( $ex, 200 );
+        }
 
 
         // if ( $user === null ) {
