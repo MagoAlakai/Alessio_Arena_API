@@ -54,13 +54,13 @@ class AuthenticatedSessionController extends Controller
                 'success' => true,
                 'token' => $token,
                 'user' => User::where('email', $credentials['email'])->get()->first(),
-            ], status:200);
+            ], 200);
         }else{
             return response()->json([
                 'success' => false,
                 'message' => 'Wrong credentials',
                 'errors' => $validator->errors(),
-            ], status:401);
+            ], 401);
         }
 
     }
@@ -72,17 +72,17 @@ class AuthenticatedSessionController extends Controller
             return response()->json([
                 'success' => true,
                 'token' => $token,
-            ], status:200);
+            ], 200);
         } catch(TokenExpiredException $ex){
             return response()->json([
                 'success' => false,
                 'message' => 'Please log in again, your login is expired!',
-            ], status:422);
+            ], 422);
         }catch(TokenBlacklistedException $ex){
             return response()->json([
                 'success' => false,
                 'message' => 'Please log in again!',
-            ], status:422);
+            ], 422);
         }
     }
 
@@ -103,12 +103,12 @@ class AuthenticatedSessionController extends Controller
             return response()->json([
                 'success' => true,
                 'message' => 'Logout successful'],
-                status:200);
+                200);
         } catch (JWTException $ex){
             return response()->json([
                 'success' => false,
                 'message' => 'Logout successful'],
-                status:422);
+                422);
         }
 
         $request->session()->regenerateToken();
