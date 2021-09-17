@@ -56,8 +56,7 @@ Route::get('/user/{email}', [UserController::class, 'getUser']);
 
 //CRUD de eventos
 
-Route::get('/eventos', [EventosController::class, 'index'])
-            ->middleware('jwt.verify');
+Route::get('/eventos', [EventosController::class, 'index']);
 
 Route::get('/eventos/{id}', [EventosController::class, 'show'])
             ->middleware('jwt.verify');

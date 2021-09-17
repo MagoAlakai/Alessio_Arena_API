@@ -18,8 +18,10 @@ class CreateEventosTable extends Migration
             $table->date('date');
             $table->string('hour');
             $table->string('name');
+            $table->string('descripcion');
             $table->string('place');
-            $table->string('price');
+            $table->string('link_place')->nullable();
+            $table->string('price')->nullable();
             $table->string('link_external')->nullable();
             $table->string('link_shop')->nullable();
             $table->timestamps();
